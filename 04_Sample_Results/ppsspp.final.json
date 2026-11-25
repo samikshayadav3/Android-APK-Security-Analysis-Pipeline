@@ -1,0 +1,1485 @@
+{
+  "scan_summary": {
+    "app_name": "ppsspp",
+    "apk_path": "./apks/ppsspp.apk",
+    "package_name": "",
+    "duration_sec": 150,
+    "static": {
+      "jadx": {
+        "status": "success",
+        "java_files": 2308
+      },
+      "semgrep": {
+        "status": "success",
+        "findings": 2
+      },
+      "mobsf": {
+        "status": "skipped",
+        "high_findings": 0
+      },
+      "deps": {
+        "status": "success",
+        "engine": "custom_proprietary_sca",
+        "findings": 34
+      }
+    },
+    "dynamic": {
+      "device_gate": "skipped",
+      "mobsf_dynamic": {
+        "status": "skipped",
+        "findings": 0
+      },
+      "drozer": {
+        "status": "skipped",
+        "flagged_findings": 0
+      },
+      "frida": {
+        "status": "skipped",
+        "events_observed": 0
+      }
+    },
+    "native_fuzz_triage": {
+      "status": "success",
+      "high_priority_libs": 0
+    }
+  },
+  "analysis": {
+    "app_name": "ppsspp",
+    "source_directory": "C:\\Users\\suhan\\Desktop\\android_pipeline\\audit_runs\\run_20261118_154644\\decompiled\\ppsspp",
+    "module": "source_vulnerability_mapper",
+    "module_version": "1.0",
+    "summary": {
+      "semgrep_findings": 2,
+      "sca_findings": 34,
+      "source_evidence_extracted": 2
+    },
+    "semgrep_findings": [
+      {
+        "check_id": "java.android.security.exported_activity.exported_activity",
+        "path": "C:\\Users\\suhan\\Desktop\\android_pipeline\\audit_runs\\run_20261118_154644\\decompiled\\ppsspp\\resources\\AndroidManifest.xml",
+        "start": {
+          "line": 75,
+          "col": 9,
+          "offset": 3309
+        },
+        "end": {
+          "line": 83,
+          "col": 39,
+          "offset": 3757
+        },
+        "extra": {
+          "message": "The application exports an activity. Any application on the device can launch the exported activity which may compromise the integrity of your application or its data.  Ensure that any exported activities do not have privileged access to your application's control plane.",
+          "metadata": {
+            "category": "security",
+            "subcategory": [
+              "vuln"
+            ],
+            "cwe": [
+              "CWE-926: Improper Export of Android Application Components"
+            ],
+            "confidence": "MEDIUM",
+            "likelihood": "MEDIUM",
+            "impact": "MEDIUM",
+            "owasp": [
+              "A5:2021 Security Misconfiguration"
+            ],
+            "technology": [
+              "Android"
+            ],
+            "references": [
+              "https://cwe.mitre.org/data/definitions/926.html"
+            ],
+            "license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+            "vulnerability_class": [
+              "Other"
+            ],
+            "source": "https://semgrep.dev/r/java.android.security.exported_activity.exported_activity",
+            "shortlink": "https://sg.run/eNGZ"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        },
+        "source_mapping": {
+          "source_file": "C:\\Users\\suhan\\Desktop\\android_pipeline\\audit_runs\\run_20261118_154644\\decompiled\\ppsspp\\resources\\AndroidManifest.xml",
+          "relative_source_file": "resources\\AndroidManifest.xml",
+          "class_name": "PpssppActivity",
+          "component": "org.ppsspp.ppsspp.PpssppActivity",
+          "method_name": null,
+          "line_start": 75,
+          "line_end": 83,
+          "code_evidence": "72:         <meta-data\n73:             android:name=\"android.max_aspect\"\n74:             android:value=\"2.4\"/>\n75:         <activity\n76:             android:theme=\"@style/ppsspp_style\"\n77:             android:name=\"org.ppsspp.ppsspp.PpssppActivity\"\n78:             android:exported=\"true\"\n79:             android:launchMode=\"singleInstance\"\n80:             android:configChanges=\"uiMode|navigation|keyboardHidden|keyboard|locale\">\n81:             <property\n82:                 android:name=\"android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY\"\n83:                 android:value=\"true\"/>\n84:             <intent-filter>\n85:                 <action android:name=\"android.intent.action.MAIN\"/>\n86:                 <category android:name=\"android.intent.category.LAUNCHER\"/>",
+          "manifest_evidence": "72:         <meta-data\n73:             android:name=\"android.max_aspect\"\n74:             android:value=\"2.4\"/>\n75:         <activity\n76:             android:theme=\"@style/ppsspp_style\"\n77:             android:name=\"org.ppsspp.ppsspp.PpssppActivity\"\n78:             android:exported=\"true\"\n79:             android:launchMode=\"singleInstance\"\n80:             android:configChanges=\"uiMode|navigation|keyboardHidden|keyboard|locale\">\n81:             <property\n82:                 android:name=\"android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY\"\n83:                 android:value=\"true\"/>\n84:             <intent-filter>\n85:                 <action android:name=\"android.intent.action.MAIN\"/>\n86:                 <category android:name=\"android.intent.category.LAUNCHER\"/>",
+          "related_java_source": {
+            "source_file": "C:\\Users\\suhan\\Desktop\\android_pipeline\\audit_runs\\run_20261118_154644\\decompiled\\ppsspp\\sources\\org\\ppsspp\\ppsspp\\PpssppActivity.java",
+            "relative_source_file": "sources\\org\\ppsspp\\ppsspp\\PpssppActivity.java",
+            "class_name": "PpssppActivity",
+            "class_line": 69,
+            "code_evidence": "64: import java.util.regex.Pattern;\n65: import kotlinx.coroutines.DebugKt;\n66: import org.ppsspp.proto.TombstoneProtos;\n67: \n68: /* JADX INFO: loaded from: classes.dex */\n69: public class PpssppActivity extends AppCompatActivity implements SensorEventListener {\n70:     public static final String ARGS_EXTRA_KEY = \"org.ppsspp.ppsspp.Args\";\n71:     public static final int REQUEST_CODE_CAMERA_PERMISSION = 3;\n72:     public static final int REQUEST_CODE_LOCATION_PERMISSION = 2;\n73:     public static final int REQUEST_CODE_MICROPHONE_PERMISSION = 4;\n74:     public static final int REQUEST_CODE_STORAGE_PERMISSION = 1;",
+            "method_inventory": [
+              {
+                "method_name": "isVRDevice",
+                "line_start": 111,
+                "line_end": 113,
+                "code_evidence": "111:     public static boolean isVRDevice() {\n112:         return false;\n113:     }"
+              },
+              {
+                "method_name": "onAccuracyChanged",
+                "line_start": 116,
+                "line_end": 117,
+                "code_evidence": "116:     public void onAccuracyChanged(Sensor sensor, int i) {\n117:     }"
+              },
+              {
+                "method_name": "runVulkanRenderLoop",
+                "line_start": 123,
+                "line_end": 129,
+                "code_evidence": "123:     public native boolean runVulkanRenderLoop(Surface surface);\n124: \n125:     public native void unregisterCallbacks();\n126: \n127:     static {\n128:         CheckABIAndLoadLibrary();\n129:     }"
+              },
+              {
+                "method_name": "unregisterCallbacks",
+                "line_start": 125,
+                "line_end": 129,
+                "code_evidence": "125:     public native void unregisterCallbacks();\n126: \n127:     static {\n128:         CheckABIAndLoadLibrary();\n129:     }"
+              },
+              {
+                "method_name": "CheckABIAndLoadLibrary",
+                "line_start": 131,
+                "line_end": 139,
+                "code_evidence": "131:     public static void CheckABIAndLoadLibrary() {\n132:         try {\n133:             System.loadLibrary(\"ppsspp_jni\");\n134:             libraryLoaded = true;\n135:         } catch (UnsatisfiedLinkError e) {\n136:             Log.e(TAG, \"LoadLibrary failed, UnsatifiedLinkError: \" + e);\n137:             m_hasNoNativeBinary = true;\n138:         }\n139:     }"
+              },
+              {
+                "method_name": "detectOptimalAudioSettings",
+                "line_start": 141,
+                "line_end": 150,
+                "code_evidence": "141:     private void detectOptimalAudioSettings() {\n142:         try {\n143:             this.optimalFramesPerBuffer = Integer.parseInt(this.audioManager.getProperty(\"android.media.property.OUTPUT_FRAMES_PER_BUFFER\"));\n144:         } catch (NumberFormatException unused) {\n145:         }\n146:         try {\n147:             this.optimalSampleRate = Integer.parseInt(this.audioManager.getProperty(\"android.media.property.OUTPUT_SAMPLE_RATE\"));\n148:         } catch (NumberFormatException unused2) {\n149:         }\n150:     }"
+              },
+              {
+                "method_name": "getApplicationLibraryDir",
+                "line_start": 152,
+                "line_end": 164,
+                "code_evidence": "152:     String getApplicationLibraryDir(ApplicationInfo applicationInfo) {\n153:         String str;\n154:         try {\n155:             str = (String) ApplicationInfo.class.getField(\"nativeLibraryDir\").get(applicationInfo);\n156:         } catch (IllegalAccessException | IllegalArgumentException | NoSuchFieldException | SecurityException e) {\n157:             Log.e(TAG, e.toString());\n158:             str = null;\n159:         }\n160:         if (str != null) {\n161:             return str;\n162:         }\n163:         return applicationInfo.dataDir + \"/lib\";\n164:     }"
+              },
+              {
+                "method_name": "askForPermissions",
+                "line_start": 166,
+                "line_end": 180,
+                "code_evidence": "166:     boolean askForPermissions(String[] strArr, int i) {\n167:         if (Build.VERSION.SDK_INT < 23) {\n168:             return false;\n169:         }\n170:         boolean z = false;\n171:         for (String str : strArr) {\n172:             if (checkSelfPermission(str) != 0) {\n173:                 z = true;\n174:             }\n175:         }\n176:         if (z) {\n177:             requestPermissions(strArr, i);\n178:         }\n179:         return z;\n180:     }"
+              },
+              {
+                "method_name": "sendInitialGrants",
+                "line_start": 182,
+                "line_end": 190,
+                "code_evidence": "182:     public void sendInitialGrants() {\n183:         if (Build.VERSION.SDK_INT >= 23) {\n184:             if (checkSelfPermission(\"android.permission.WRITE_EXTERNAL_STORAGE\") == 0) {\n185:                 NativeApp.sendMessageFromJava(\"permission_granted\", \"storage\");\n186:             } else {\n187:                 NativeApp.sendMessageFromJava(\"permission_denied\", \"storage\");\n188:             }\n189:         }\n190:     }"
+              },
+              {
+                "method_name": "permissionsGranted",
+                "line_start": 192,
+                "line_end": 199,
+                "code_evidence": "192:     boolean permissionsGranted(String[] strArr, int[] iArr) {\n193:         for (int i = 0; i < strArr.length; i++) {\n194:             if (iArr[i] != 0) {\n195:                 return false;\n196:             }\n197:         }\n198:         return true;\n199:     }"
+              },
+              {
+                "method_name": "onRequestPermissionsResult",
+                "line_start": 202,
+                "line_end": 229,
+                "code_evidence": "202:     public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {\n203:         super.onRequestPermissionsResult(i, strArr, iArr);\n204:         if (i == 1) {\n205:             if (permissionsGranted(strArr, iArr)) {\n206:                 NativeApp.sendMessageFromJava(\"permission_granted\", \"storage\");\n207:                 return;\n208:             } else {\n209:                 NativeApp.sendMessageFromJava(\"permission_denied\", \"storage\");\n210:                 return;\n211:             }\n212:         }\n213:         if (i == 2) {\n214:             if (permissionsGranted(strArr, iArr)) {\n215:                 mLocationHelper.startLocationUpdates();\n216:             }\n217:         } else {\n218:             if (i == 3) {\n219:                 if (mCameraHelper == null || !permissionsGranted(strArr, iArr)) {\n220:                     return;\n221:                 }\n222:                 mCameraHelper.startCamera();\n223:                 return;\n224:             }\n225:             if (i == 4 && permissionsGranted(strArr, iArr)) {\n226:                 NativeApp.audioRecording_Start();\n227:             }\n228:         }\n229:     }"
+              },
+              {
+                "method_name": "setShortcutParam",
+                "line_start": 231,
+                "line_end": 236,
+                "code_evidence": "231:     public void setShortcutParam(String str) {\n232:         if (str == null) {\n233:             str = \"\";\n234:         }\n235:         this.shortcutParam = str;\n236:     }"
+              },
+              {
+                "method_name": "getSdCardPaths",
+                "line_start": 244,
+                "line_end": 280,
+                "code_evidence": "244:     private static ArrayList<String> getSdCardPaths(Context context) {\n245:         ArrayList<String> arrayList;\n246:         ArrayList<String> arrayList2;\n247:         if (Build.VERSION.SDK_INT <= 29) {\n248:             Log.i(TAG, \"getSdCardPaths: Trying KitKat method\");\n249:             arrayList = getSdCardPaths19(context);\n250:         } else {\n251:             arrayList = null;\n252:         }\n253:         if (arrayList == null) {\n254:             Log.i(TAG, \"getSdCardPaths: Attempting fallback\");\n255:             File[] fileArrListFiles = new File(\"/storage/\").listFiles();\n256:             if (fileArrListFiles != null) {\n257:                 arrayList = new ArrayList<>();\n258:                 for (File file : fileArrListFiles) {\n259:                     if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath()) && file.isDirectory() && file.canRead()) {\n260:                         arrayList.add(file.getAbsolutePath());\n261:                     }\n262:                 }\n263:                 arrayList2 = arrayList.isEmpty() ? null : arrayList;\n264:             }\n265:         }\n266:         if (arrayList2 == null) {\n267:             String[] strArr = {\"EXTERNAL_SDCARD_STORAGE\", \"SECONDARY_STORAGE\"};\n268:             for (int i = 0; i < 2; i++) {\n269:                 String str = strArr[i];\n270:                 Log.i(TAG, \"getSdCardPaths: Checking env \" + str);\n271:                 String str2 = System.getenv(str);\n272:                 if (str2 != null && !str2.isEmpty()) {\n273:                     arrayList2 = new ArrayList<>();\n274:                     arrayList2.add(str2);\n275:                     break;\n276:                 }\n277:             }\n278:         }\n279:         return arrayList2 == null ? new ArrayList<>() : arrayList2;\n280:     }"
+              },
+              {
+                "method_name": "getSdCardPaths19",
+                "line_start": 282,
+                "line_end": 306,
+                "code_evidence": "282:     private static ArrayList<String> getSdCardPaths19(Context context) {\n283:         String rootOfInnerSdCardFolder;\n284:         File file;\n285:         File[] externalCacheDirs = context.getExternalCacheDirs();\n286:         if (externalCacheDirs == null || externalCacheDirs.length == 0) {\n287:             return null;\n288:         }\n289:         if (externalCacheDirs.length == 1 && ((file = externalCacheDirs[0]) == null || !\"mounted\".equals(Environment.getStorageState(file)) || Environment.isExternalStorageEmulated())) {\n290:             return null;\n291:         }\n292:         ArrayList<String> arrayList = new ArrayList<>();\n293:         if (externalCacheDirs.length == 1) {\n294:             arrayList.add(getRootOfInnerSdCardFolder(externalCacheDirs[0]));\n295:         }\n296:         for (int i = 1; i < externalCacheDirs.length; i++) {\n297:             File file2 = externalCacheDirs[i];\n298:             if (file2 != null && \"mounted\".equals(Environment.getStorageState(file2)) && (rootOfInnerSdCardFolder = getRootOfInnerSdCardFolder(externalCacheDirs[i])) != null) {\n299:                 arrayList.add(rootOfInnerSdCardFolder);\n300:             }\n301:         }\n302:         if (arrayList.isEmpty()) {\n303:             return null;\n304:         }\n305:         return arrayList;\n306:     }"
+              },
+              {
+                "method_name": "getRootOfInnerSdCardFolder",
+                "line_start": 308,
+                "line_end": 324,
+                "code_evidence": "308:     private static String getRootOfInnerSdCardFolder(File file) {\n309:         if (file == null) {\n310:             return null;\n311:         }\n312:         long totalSpace = file.getTotalSpace();\n313:         if (totalSpace <= 0) {\n314:             return null;\n315:         }\n316:         while (true) {\n317:             File parentFile = file.getParentFile();\n318:             if (parentFile == null || !parentFile.canRead() || parentFile.getTotalSpace() != totalSpace) {\n319:                 break;\n320:             }\n321:             file = parentFile;\n322:         }\n323:         return file.getAbsolutePath();\n324:     }"
+              },
+              {
+                "method_name": "detectOpenGLES20",
+                "line_start": 326,
+                "line_end": 328,
+                "code_evidence": "326:     private boolean detectOpenGLES20() {\n327:         return ((ActivityManager) getSystemService(\"activity\")).getDeviceConfigurationInfo().reqGlEsVersion >= 131072;\n328:     }"
+              },
+              {
+                "method_name": "detectOpenGLES30",
+                "line_start": 330,
+                "line_end": 332,
+                "code_evidence": "330:     private boolean detectOpenGLES30() {\n331:         return ((ActivityManager) getSystemService(\"activity\")).getDeviceConfigurationInfo().reqGlEsVersion >= 196608;\n332:     }"
+              },
+              {
+                "method_name": "Initialize",
+                "line_start": 334,
+                "line_end": 427,
+                "code_evidence": "334:     public void Initialize() {\n335:         int i;\n336:         this.audioManager = (AudioManager) getSystemService(\"audio\");\n337:         this.audioFocusChangeListener = new AudioFocusChangeListener();\n338:         detectOptimalAudioSettings();\n339:         PowerManager powerManager = (PowerManager) getSystemService(\"power\");\n340:         if (Build.VERSION.SDK_INT >= 24 && powerManager != null && powerManager.isSustainedPerformanceModeSupported()) {\n341:             this.sustainedPerfSupported = true;\n342:             NativeApp.sendMessageFromJava(\"sustained_perf_supported\", \"1\");\n343:         }\n344:         Log.d(TAG, \"Landscape: \" + NativeApp.isLandscape());\n345:         try {\n346:             ApplicationInfo applicationInfo = getPackageManager().getApplicationInfo(getPackageName(), 0);\n347:             int i2 = isVRDevice() ? 3 : 0;\n348:             int currentModeType = ((UiModeManager) getSystemService(\"uimode\")).getCurrentModeType();\n349:             if (currentModeType == 2) {\n350:                 Log.i(TAG, \"Running on an Android desktop computer (!)\");\n351:                 i = 2;\n352:             } else if (currentModeType != 4) {\n353:                 i = i2;\n354:             } else {\n355:                 Log.i(TAG, \"Running on an Android TV Device\");\n356:                 i = 1;\n357:             }\n358:             String externalStorageState = Environment.getExternalStorageState();\n359:             String absolutePath = Environment.getExternalStorageDirectory().getAbsolutePath();\n360:             File externalFilesDir = getExternalFilesDir(null);\n361:             String string = \"\";\n362:             String absolutePath2 = externalFilesDir == null ? \"\" : externalFilesDir.getAbsolutePath();\n363:             String applicationLibraryDir = getApplicationLibraryDir(applicationInfo);\n364:             Log.i(TAG, \"Ext storage: \" + externalStorageState + \" \" + absolutePath);\n365:             StringBuilder sb = new StringBuilder(\"Ext files dir: \");\n366:             sb.append(absolutePath2);\n367:             Log.i(TAG, sb.toString());\n368:             try {\n369:                 ArrayList<String> sdCardPaths = getSdCardPaths(this);\n370:                 StringBuilder sb2 = new StringBuilder();\n371:                 for (int i3 = 0; i3 < sdCardPaths.size(); i3++) {\n372:                     String str = sdCardPaths.get(i3);\n373:                     Log.i(TAG, \"SD card: \" + str);"
+              },
+              {
+                "method_name": "RuntimeException",
+                "line_start": 425,
+                "line_end": 442,
+                "code_evidence": "425:             throw new RuntimeException(\"Unable to locate assets, aborting...\");\n426:         }\n427:     }\n428: \n429:     private static String getInstallerName(PackageManager packageManager) {\n430:         String installerPackageName;\n431:         try {\n432:             if (Build.VERSION.SDK_INT >= 30) {\n433:                 installerPackageName = packageManager.getInstallSourceInfo(\"package name\").getInstallingPackageName();\n434:             } else {\n435:                 installerPackageName = packageManager.getInstallerPackageName(\"package name\");\n436:             }\n437:             return (installerPackageName == null || installerPackageName.isEmpty()) ? EnvironmentCompat.MEDIA_UNKNOWN : installerPackageName;\n438:         } catch (Exception unused) {\n439:             Log.e(TAG, \"Exception while determining installer name\");\n440:             return EnvironmentCompat.MEDIA_UNKNOWN;\n441:         }\n442:     }"
+              },
+              {
+                "method_name": "getInstallerName",
+                "line_start": 429,
+                "line_end": 442,
+                "code_evidence": "429:     private static String getInstallerName(PackageManager packageManager) {\n430:         String installerPackageName;\n431:         try {\n432:             if (Build.VERSION.SDK_INT >= 30) {\n433:                 installerPackageName = packageManager.getInstallSourceInfo(\"package name\").getInstallingPackageName();\n434:             } else {\n435:                 installerPackageName = packageManager.getInstallerPackageName(\"package name\");\n436:             }\n437:             return (installerPackageName == null || installerPackageName.isEmpty()) ? EnvironmentCompat.MEDIA_UNKNOWN : installerPackageName;\n438:         } catch (Exception unused) {\n439:             Log.e(TAG, \"Exception while determining installer name\");\n440:             return EnvironmentCompat.MEDIA_UNKNOWN;\n441:         }\n442:     }"
+              },
+              {
+                "method_name": "updateSustainedPerformanceMode",
+                "line_start": 444,
+                "line_end": 454,
+                "code_evidence": "444:     private void updateSustainedPerformanceMode() {\n445:         if (!this.sustainedPerfSupported || Build.VERSION.SDK_INT < 24) {\n446:             return;\n447:         }\n448:         String strQueryConfig = NativeApp.queryConfig(\"sustainedPerformanceMode\");\n449:         try {\n450:             getWindow().setSustainedPerformanceMode(Integer.parseInt(strQueryConfig) != 0);\n451:         } catch (NumberFormatException unused) {\n452:             Log.e(TAG, \"Invalid perf mode: \" + strQueryConfig);\n453:         }\n454:     }"
+              },
+              {
+                "method_name": "updateScreenRotation",
+                "line_start": 456,
+                "line_end": 487,
+                "code_evidence": "456:     private void updateScreenRotation(String str) {\n457:         if (Build.VERSION.SDK_INT >= 24 && isInMultiWindowMode()) {\n458:             Log.e(TAG, \"Multi window mode, not setting orientation\");\n459:             return;\n460:         }\n461:         String strQueryConfig = NativeApp.queryConfig(\"screenRotation\");\n462:         try {\n463:             int i = Integer.parseInt(strQueryConfig);\n464:             int i2 = 4;\n465:             if (i != 0) {\n466:                 if (i == 1) {\n467:                     i2 = 0;\n468:                 } else if (i == 2) {\n469:                     i2 = 1;\n470:                 } else if (i == 3) {\n471:                     i2 = 8;\n472:                 } else if (i != 4) {\n473:                     i2 = i != 5 ? -1 : 6;\n474:                 } else {\n475:                     i2 = 9;\n476:                 }\n477:             }\n478:             if (getRequestedOrientation() != i2) {\n479:                 Log.i(TAG, \"Changing requested rotation to \" + i + \" ('\" + strQueryConfig + \"') (\" + str + \")\");\n480:                 setRequestedOrientation(i2);\n481:                 return;\n482:             }\n483:             Log.i(TAG, \"Rotation already set.\");\n484:         } catch (NumberFormatException unused) {\n485:             Log.e(TAG, \"Invalid rotation: \" + strQueryConfig);\n486:         }\n487:     }"
+              },
+              {
+                "method_name": "useImmersive",
+                "line_start": 489,
+                "line_end": 491,
+                "code_evidence": "489:     private boolean useImmersive() {\n490:         return NativeApp.queryConfig(\"immersiveMode\").equals(\"1\");\n491:     }"
+              },
+              {
+                "method_name": "updateSystemUiVisibility",
+                "line_start": 493,
+                "line_end": 521,
+                "code_evidence": "493:     private void updateSystemUiVisibility() {\n494:         Window window = getWindow();\n495:         int i = getResources().getConfiguration().orientation;\n496:         WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());\n497:         if (Build.VERSION.SDK_INT >= 24) {\n498:             insetsController.setAppearanceLightStatusBars(false);\n499:             insetsController.setAppearanceLightNavigationBars(false);\n500:         }\n501:         if (Build.VERSION.SDK_INT >= 29) {\n502:             window.setStatusBarContrastEnforced(false);\n503:             window.setNavigationBarContrastEnforced(true);\n504:         }\n505:         window.setStatusBarColor(0);\n506:         window.setNavigationBarColor(Integer.MIN_VALUE);\n507:         insetsController.setSystemBarsBehavior(2);\n508:         if (i == 2) {\n509:             if (useImmersive()) {\n510:                 insetsController.hide(WindowInsetsCompat.Type.statusBars() | WindowInsetsCompat.Type.navigationBars());\n511:             } else {\n512:                 insetsController.hide(WindowInsetsCompat.Type.statusBars());\n513:                 insetsController.show(WindowInsetsCompat.Type.navigationBars());\n514:             }\n515:         } else if (useImmersive()) {\n516:             insetsController.hide(WindowInsetsCompat.Type.statusBars() | WindowInsetsCompat.Type.navigationBars());\n517:         } else {\n518:             insetsController.show(WindowInsetsCompat.Type.statusBars() | WindowInsetsCompat.Type.navigationBars());\n519:         }\n520:         this.sizeManager.checkDisplayMeasurements();\n521:     }"
+              },
+              {
+                "method_name": "onCreate",
+                "line_start": 525,
+                "line_end": 644,
+                "code_evidence": "525:     public void onCreate(Bundle bundle) {\n526:         super.onCreate(bundle);\n527:         if (m_hasNoNativeBinary) {\n528:             new Thread() { // from class: org.ppsspp.ppsspp.PpssppActivity.1\n529:                 @Override // java.lang.Thread, java.lang.Runnable\n530:                 public void run() {\n531:                     Looper.prepare();\n532:                     new AlertDialog.Builder(PpssppActivity.this).setMessage(\"The native part of PPSSPP for ABI \" + Build.CPU_ABI + \" is missing. Try downloading an official build?\").setTitle(\"Error starting PPSSPP\").create().show();\n533:                     Looper.loop();\n534:                 }\n535:             }.start();\n536:             try {\n537:                 Thread.sleep(3000L);\n538:             } catch (InterruptedException e) {\n539:                 e.printStackTrace();\n540:             }\n541:             System.exit(-1);\n542:             return;\n543:         }\n544:         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);\n545:         String intent = parseIntent(getIntent());\n546:         if (intent != null) {\n547:             Log.i(TAG, \"Found Shortcut Parameter in data, passing on: \" + intent);\n548:             setShortcutParam(intent);\n549:         }\n550:         this.lifeCycle.onCreate();\n551:         SensorManager sensorManager = (SensorManager) getSystemService(\"sensor\");\n552:         this.mSensorManager = sensorManager;\n553:         boolean z = true;\n554:         this.mAccelerometer = sensorManager.getDefaultSensor(1);\n555:         this.sizeManager = new SizeManager(this);\n556:         TextRenderer.init(this);\n557:         this.shuttingDown = false;\n558:         registerCallbacks();\n559:         this.sizeManager.updateDisplayMeasurements();\n560:         if (!initialized) {\n561:             Initialize();\n562:             initialized = true;\n563:         }\n564:         if (this.mPowerSaveModeReceiver == null) {"
+              },
+              {
+                "method_name": "Thread",
+                "line_start": 528,
+                "line_end": 535,
+                "code_evidence": "528:             new Thread() { // from class: org.ppsspp.ppsspp.PpssppActivity.1\n529:                 @Override // java.lang.Thread, java.lang.Runnable\n530:                 public void run() {\n531:                     Looper.prepare();\n532:                     new AlertDialog.Builder(PpssppActivity.this).setMessage(\"The native part of PPSSPP for ABI \" + Build.CPU_ABI + \" is missing. Try downloading an official build?\").setTitle(\"Error starting PPSSPP\").create().show();\n533:                     Looper.loop();\n534:                 }\n535:             }.start();"
+              },
+              {
+                "method_name": "run",
+                "line_start": 530,
+                "line_end": 534,
+                "code_evidence": "530:                 public void run() {\n531:                     Looper.prepare();\n532:                     new AlertDialog.Builder(PpssppActivity.this).setMessage(\"The native part of PPSSPP for ABI \" + Build.CPU_ABI + \" is missing. Try downloading an official build?\").setTitle(\"Error starting PPSSPP\").create().show();\n533:                     Looper.loop();\n534:                 }"
+              },
+              {
+                "method_name": "handleOnBackPressed",
+                "line_start": 594,
+                "line_end": 603,
+                "code_evidence": "594:             public void handleOnBackPressed() {\n595:                 if (NativeApp.isAtTopLevel()) {\n596:                     setEnabled(false);\n597:                     PpssppActivity.this.getOnBackPressedDispatcher().onBackPressed();\n598:                     setEnabled(true);\n599:                 } else {\n600:                     NativeApp.keyDown(0, 4, false);\n601:                     NativeApp.keyUp(0, 4);\n602:                 }\n603:             }"
+              },
+              {
+                "method_name": "onInputDeviceChanged",
+                "line_start": 607,
+                "line_end": 608,
+                "code_evidence": "607:             public void onInputDeviceChanged(int i) {\n608:             }"
+              },
+              {
+                "method_name": "onInputDeviceAdded",
+                "line_start": 611,
+                "line_end": 627,
+                "code_evidence": "611:             public void onInputDeviceAdded(int i) {\n612:                 Log.i(PpssppActivity.TAG, \"onInputDeviceAdded\");\n613:                 InputDevice device = InputDevice.getDevice(i);\n614:                 if (device == null) {\n615:                     Log.i(PpssppActivity.TAG, \"BAD: Invalid device id\");\n616:                     return;\n617:                 }\n618:                 Iterator it = PpssppActivity.this.inputPlayers.iterator();\n619:                 while (it.hasNext()) {\n620:                     if (((InputDeviceState) it.next()).getDevice() == device) {\n621:                         Log.i(PpssppActivity.TAG, \"Unexpected: Device already registered\");\n622:                         return;\n623:                     }\n624:                 }\n625:                 PpssppActivity.this.inputPlayers.add(new InputDeviceState(device, true));\n626:                 Log.i(PpssppActivity.TAG, \"Input player registered on connect: desc = \" + device.getDescriptor());\n627:             }"
+              },
+              {
+                "method_name": "onInputDeviceRemoved",
+                "line_start": 630,
+                "line_end": 641,
+                "code_evidence": "630:             public void onInputDeviceRemoved(int i) {\n631:                 Log.i(PpssppActivity.TAG, \"onInputDeviceRemoved\");\n632:                 for (int i2 = 0; i2 < PpssppActivity.this.inputPlayers.size(); i2++) {\n633:                     InputDeviceState inputDeviceState = (InputDeviceState) PpssppActivity.this.inputPlayers.get(i2);\n634:                     if (inputDeviceState.getDevice().getId() == i) {\n635:                         Log.i(PpssppActivity.TAG, \"Input device removed: \" + inputDeviceState.getDevice().getName());\n636:                         NativeApp.sendMessageFromJava(\"inputDeviceDisconnectedID\", String.valueOf(inputDeviceState.getDeviceId()));\n637:                         PpssppActivity.this.inputPlayers.remove(i2);\n638:                         return;\n639:                     }\n640:                 }\n641:             }"
+              },
+              {
+                "method_name": "onWindowFocusChanged",
+                "line_start": 647,
+                "line_end": 652,
+                "code_evidence": "647:     public void onWindowFocusChanged(boolean z) {\n648:         Log.i(TAG, \"onWindowFocusChanged\");\n649:         super.onWindowFocusChanged(z);\n650:         updateSustainedPerformanceMode();\n651:         updateSystemUiVisibility();\n652:     }"
+              },
+              {
+                "method_name": "applyFrameRate",
+                "line_start": 654,
+                "line_end": 675,
+                "code_evidence": "654:     private void applyFrameRate(Surface surface, float f) {\n655:         Log.i(TAG, \"applyFramerate\");\n656:         if (Build.VERSION.SDK_INT >= 30 && surface != null) {\n657:             try {\n658:                 int displayFramerateMode = NativeApp.getDisplayFramerateMode();\n659:                 if (displayFramerateMode > 0) {\n660:                     Log.i(TAG, \"Setting desired framerate to \" + f + \" Hz method=\" + displayFramerateMode);\n661:                     if (displayFramerateMode == 1) {\n662:                         surface.setFrameRate(f, 0);\n663:                         return;\n664:                     }\n665:                     if (displayFramerateMode == 2) {\n666:                         surface.setFrameRate(f, 1);\n667:                     } else if (displayFramerateMode == 3 && Build.VERSION.SDK_INT >= 31) {\n668:                         surface.setFrameRate(f, 1, 1);\n669:                     }\n670:                 }\n671:             } catch (Exception e) {\n672:                 Log.e(TAG, \"Failed to request framerate: \" + e);\n673:             }\n674:         }\n675:     }"
+              },
+              {
+                "method_name": "setInsetsListener",
+                "line_start": 677,
+                "line_end": 684,
+                "code_evidence": "677:     private void setInsetsListener(SurfaceView surfaceView) {\n678:         ViewCompat.setOnApplyWindowInsetsListener(surfaceView, new OnApplyWindowInsetsListener() { // from class: org.ppsspp.ppsspp.PpssppActivity$$ExternalSyntheticLambda17\n679:             @Override // androidx.core.view.OnApplyWindowInsetsListener\n680:             public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {\n681:                 return this.f$0.m1802lambda$setInsetsListener$0$orgppssppppssppPpssppActivity(view, windowInsetsCompat);\n682:             }\n683:         });\n684:     }"
+              },
+              {
+                "method_name": "onApplyWindowInsets",
+                "line_start": 680,
+                "line_end": 682,
+                "code_evidence": "680:             public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {\n681:                 return this.f$0.m1802lambda$setInsetsListener$0$orgppssppppssppPpssppActivity(view, windowInsetsCompat);\n682:             }"
+              },
+              {
+                "method_name": "updateInsets",
+                "line_start": 692,
+                "line_end": 700,
+                "code_evidence": "692:     private void updateInsets(WindowInsetsCompat windowInsetsCompat) {\n693:         if (windowInsetsCompat == null) {\n694:             return;\n695:         }\n696:         DisplayCutoutCompat displayCutout = windowInsetsCompat.getDisplayCutout();\n697:         int i = (displayCutout == null || displayCutout.getBoundingRects().isEmpty()) ? 0 : 1;\n698:         Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());\n699:         NativeApp.sendMessageFromJava(\"safe_insets\", insets.left + \":\" + insets.right + \":\" + insets.top + \":\" + insets.bottom + \":\" + i);\n700:     }"
+              },
+              {
+                "method_name": "notifySurface",
+                "line_start": 702,
+                "line_end": 719,
+                "code_evidence": "702:     public void notifySurface(Surface surface) {\n703:         this.mSurface = surface;\n704:         if (javaGL) {\n705:             if (surface != null) {\n706:                 Log.i(TAG, \"notifySurface: Applying framerate.\");\n707:                 applyFrameRate(this.mSurface, 60.0f);\n708:             }\n709:         } else if (!initialized) {\n710:             Log.e(TAG, \"notifySurface: Saving surface, but can't start/stop threads while not initialized\");\n711:             return;\n712:         } else if (surface != null) {\n713:             Log.i(TAG, \"notifySurface: got surface, starting thread.\");\n714:             startRenderLoopThread();\n715:         } else {\n716:             Log.i(TAG, \"notifySurface: Notified surface is null, not starting thread.\");\n717:         }\n718:         updateSustainedPerformanceMode();\n719:     }"
+              },
+              {
+                "method_name": "startRenderLoopThread",
+                "line_start": 721,
+                "line_end": 733,
+                "code_evidence": "721:     protected synchronized void startRenderLoopThread() {\n722:         if (javaGL) {\n723:             Log.e(TAG, \"JavaGL mode - should not get into startRenderLoopThread.\");\n724:         } else {\n725:             if (this.mSurface == null) {\n726:                 Log.w(TAG, \"startRenderLoopThread - not starting thread, needs surface\");\n727:                 return;\n728:             }\n729:             Log.w(TAG, \"startRenderLoopThread: Starting thread\");\n730:             applyFrameRate(this.mSurface, 60.0f);\n731:             runVulkanRenderLoop(this.mSurface);\n732:         }\n733:     }"
+              },
+              {
+                "method_name": "joinRenderLoopThread",
+                "line_start": 735,
+                "line_end": 742,
+                "code_evidence": "735:     private synchronized void joinRenderLoopThread() {\n736:         if (javaGL) {\n737:             Log.e(TAG, \"JavaGL - should not get into joinRenderLoopThread.\");\n738:         } else {\n739:             Log.i(TAG, \"requestExitVulkanRenderLoop\");\n740:             requestExitVulkanRenderLoop();\n741:         }\n742:     }"
+              },
+              {
+                "method_name": "setupSystemUiCallback",
+                "line_start": 744,
+                "line_end": 751,
+                "code_evidence": "744:     void setupSystemUiCallback() {\n745:         View viewPeekDecorView = getWindow().peekDecorView();\n746:         if (viewPeekDecorView == null || viewPeekDecorView == this.navigationCallbackView) {\n747:             return;\n748:         }\n749:         this.sizeManager.setupSystemUiCallback(viewPeekDecorView);\n750:         this.navigationCallbackView = viewPeekDecorView;\n751:     }"
+              },
+              {
+                "method_name": "onDestroy",
+                "line_start": 754,
+                "line_end": 788,
+                "code_evidence": "754:     protected void onDestroy() {\n755:         super.onDestroy();\n756:         this.lifeCycle.onDestroy();\n757:         if (javaGL) {\n758:             this.nativeRenderer = null;\n759:             this.mGLSurfaceView = null;\n760:         } else {\n761:             this.mSurfaceView = null;\n762:             this.mSurface = null;\n763:         }\n764:         this.mSensorManager = null;\n765:         this.mAccelerometer = null;\n766:         this.audioFocusChangeListener = null;\n767:         this.audioManager = null;\n768:         this.sizeManager.setSurfaceView(null);\n769:         PowerSaveModeReceiver powerSaveModeReceiver = this.mPowerSaveModeReceiver;\n770:         if (powerSaveModeReceiver != null) {\n771:             powerSaveModeReceiver.destroy(this);\n772:             this.mPowerSaveModeReceiver = null;\n773:         }\n774:         NativeApp.audioShutdown();\n775:         if (this.shuttingDown) {\n776:             Log.i(TAG, \"in onDestroy, shutting down. Calling NativeApp.shutdown().\");\n777:             NativeApp.shutdown();\n778:             unregisterCallbacks();\n779:             initialized = false;\n780:         } else {\n781:             Log.i(TAG, \"in onDestroy, but not shutting down.\");\n782:         }\n783:         this.navigationCallbackView = null;\n784:         if (isVRDevice()) {\n785:             System.exit(0);\n786:         }\n787:         Log.i(TAG, \"onDestroy end\");\n788:     }"
+              },
+              {
+                "method_name": "onStart",
+                "line_start": 791,
+                "line_end": 794,
+                "code_evidence": "791:     protected void onStart() {\n792:         super.onStart();\n793:         this.lifeCycle.onStart();\n794:     }"
+              },
+              {
+                "method_name": "onStop",
+                "line_start": 797,
+                "line_end": 800,
+                "code_evidence": "797:     protected void onStop() {\n798:         super.onStop();\n799:         this.lifeCycle.onStop();\n800:     }"
+              },
+              {
+                "method_name": "onPause",
+                "line_start": 803,
+                "line_end": 826,
+                "code_evidence": "803:     protected void onPause() {\n804:         super.onPause();\n805:         this.lifeCycle.onPause();\n806:         ((InputManager) getSystemService(\"input\")).unregisterInputDeviceListener(this.inputDeviceListener);\n807:         if (!javaGL) {\n808:             Log.i(TAG, \"Joining render thread...\");\n809:             joinRenderLoopThread();\n810:             Log.i(TAG, \"Joined render thread\");\n811:         } else {\n812:             NativeGLSurfaceView nativeGLSurfaceView = this.mGLSurfaceView;\n813:             if (nativeGLSurfaceView != null) {\n814:                 nativeGLSurfaceView.onPause();\n815:             }\n816:         }\n817:         this.mSensorManager.unregisterListener(this);\n818:         loseAudioFocus(this.audioManager, this.audioFocusChangeListener);\n819:         this.sizeManager.onPause();\n820:         NativeApp.pause();\n821:         CameraHelper cameraHelper = mCameraHelper;\n822:         if (cameraHelper != null) {\n823:             cameraHelper.pause();\n824:         }\n825:         Log.i(TAG, \"onPause end\");\n826:     }"
+              },
+              {
+                "method_name": "onResume",
+                "line_start": 829,
+                "line_end": 853,
+                "code_evidence": "829:     protected void onResume() {\n830:         super.onResume();\n831:         this.lifeCycle.onResume();\n832:         updateSustainedPerformanceMode();\n833:         this.sizeManager.onResume();\n834:         updateSystemUiVisibility();\n835:         updateScreenRotation(\"onResume\");\n836:         CameraHelper cameraHelper = mCameraHelper;\n837:         if (cameraHelper != null) {\n838:             cameraHelper.resume();\n839:         }\n840:         gainAudioFocus(this.audioManager, this.audioFocusChangeListener);\n841:         NativeApp.resume();\n842:         this.mSensorManager.registerListener(this, this.mAccelerometer, 1);\n843:         ((InputManager) getSystemService(\"input\")).registerInputDeviceListener(this.inputDeviceListener, null);\n844:         if (!javaGL) {\n845:             startRenderLoopThread();\n846:         } else {\n847:             NativeGLSurfaceView nativeGLSurfaceView = this.mGLSurfaceView;\n848:             if (nativeGLSurfaceView != null) {\n849:                 nativeGLSurfaceView.onResume();\n850:             }\n851:         }\n852:         Log.i(TAG, \"onResume end\");\n853:     }"
+              },
+              {
+                "method_name": "onSensorChanged",
+                "line_start": 856,
+                "line_end": 861,
+                "code_evidence": "856:     public void onSensorChanged(SensorEvent sensorEvent) {\n857:         if (sensorEvent.sensor.getType() != 1) {\n858:             return;\n859:         }\n860:         NativeApp.accelerometer(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);\n861:     }"
+              },
+              {
+                "method_name": "onAttachedToWindow",
+                "line_start": 864,
+                "line_end": 868,
+                "code_evidence": "864:     public void onAttachedToWindow() {\n865:         Log.i(TAG, \"onAttachedToWindow\");\n866:         super.onAttachedToWindow();\n867:         setupSystemUiCallback();\n868:     }"
+              },
+              {
+                "method_name": "onConfigurationChanged",
+                "line_start": 871,
+                "line_end": 876,
+                "code_evidence": "871:     public void onConfigurationChanged(Configuration configuration) {\n872:         super.onConfigurationChanged(configuration);\n873:         Log.i(TAG, \"onConfigurationChanged\");\n874:         updateSystemUiVisibility();\n875:         this.sizeManager.updateDpi(configuration.densityDpi);\n876:     }"
+              },
+              {
+                "method_name": "onMultiWindowModeChanged",
+                "line_start": 879,
+                "line_end": 883,
+                "code_evidence": "879:     public void onMultiWindowModeChanged(boolean z, Configuration configuration) {\n880:         Log.i(TAG, \"onMultiWindowModeChanged: isInMultiWindowMode = \" + z);\n881:         super.onMultiWindowModeChanged(z, configuration);\n882:         this.sizeManager.checkDisplayMeasurements();\n883:     }"
+              },
+              {
+                "method_name": "gainAudioFocus",
+                "line_start": 885,
+                "line_end": 889,
+                "code_evidence": "885:     public static void gainAudioFocus(AudioManager audioManager, AudioFocusChangeListener audioFocusChangeListener) {\n886:         if (audioManager != null) {\n887:             audioManager.requestAudioFocus(audioFocusChangeListener, 3, 1);\n888:         }\n889:     }"
+              },
+              {
+                "method_name": "loseAudioFocus",
+                "line_start": 891,
+                "line_end": 895,
+                "code_evidence": "891:     public static void loseAudioFocus(AudioManager audioManager, AudioFocusChangeListener audioFocusChangeListener) {\n892:         if (audioManager != null) {\n893:             audioManager.abandonAudioFocus(audioFocusChangeListener);\n894:         }\n895:     }"
+              },
+              {
+                "method_name": "getInputDeviceState",
+                "line_start": 897,
+                "line_end": 911,
+                "code_evidence": "897:     private InputDeviceState getInputDeviceState(InputEvent inputEvent) {\n898:         InputDevice device = inputEvent.getDevice();\n899:         if (device == null) {\n900:             return null;\n901:         }\n902:         for (InputDeviceState inputDeviceState : this.inputPlayers) {\n903:             if (inputDeviceState.getDevice() == device) {\n904:                 return inputDeviceState;\n905:             }\n906:         }\n907:         InputDeviceState inputDeviceState2 = new InputDeviceState(device, false);\n908:         this.inputPlayers.add(inputDeviceState2);\n909:         Log.i(TAG, \"Input player post-registered: desc = \" + device.getDescriptor());\n910:         return inputDeviceState2;\n911:     }"
+              },
+              {
+                "method_name": "getInputDeviceDebugString",
+                "line_start": 913,
+                "line_end": 923,
+                "code_evidence": "913:     protected String getInputDeviceDebugString() {\n914:         StringBuilder sb = new StringBuilder();\n915:         Iterator<InputDeviceState> it = this.inputPlayers.iterator();\n916:         while (it.hasNext()) {\n917:             sb.append(it.next().getDebugString());\n918:         }\n919:         if (sb.length() == 0) {\n920:             return \"(no devices)\";\n921:         }\n922:         return sb.toString();\n923:     }"
+              },
+              {
+                "method_name": "dispatchKeyEvent",
+                "line_start": 926,
+                "line_end": 959,
+                "code_evidence": "926:     public boolean dispatchKeyEvent(KeyEvent keyEvent) {\n927:         if (NativeApp.isFromSource(keyEvent, 8194)) {\n928:             Log.i(TAG, \"Forwarding key event from mouse: \" + keyEvent.getKeyCode() + \" useModernB2: \" + useModernMouseEventsB2);\n929:             if (keyEvent.getKeyCode() == 4 && !useModernMouseEventsB2) {\n930:                 int action = keyEvent.getAction();\n931:                 if (action == 0) {\n932:                     NativeApp.mouse(-1.0f, -1.0f, 2, 1);\n933:                 } else if (action == 1) {\n934:                     NativeApp.mouse(-1.0f, -1.0f, 2, 2);\n935:                 }\n936:             }\n937:             return true;\n938:         }\n939:         InputDeviceState inputDeviceState = getInputDeviceState(keyEvent);\n940:         if (inputDeviceState == null) {\n941:             return super.dispatchKeyEvent(keyEvent);\n942:         }\n943:         if (!(InputDeviceState.inputSourceIsJoystick(keyEvent.getSource()) ? false : keyEvent.getKeyCode() == 4)) {\n944:             int action2 = keyEvent.getAction();\n945:             if (action2 == 0) {\n946:                 int unicodeChar = keyEvent.getUnicodeChar();\n947:                 if (unicodeChar != 0 && !Character.isISOControl(unicodeChar)) {\n948:                     Log.i(TAG, \"Key char event \" + unicodeChar);\n949:                     NativeApp.keyChar(1, (char) unicodeChar);\n950:                 }\n951:                 if (inputDeviceState.onKeyDown(keyEvent)) {\n952:                     return true;\n953:                 }\n954:             } else if (action2 == 1 && inputDeviceState.onKeyUp(keyEvent)) {\n955:                 return true;\n956:             }\n957:         }\n958:         return super.dispatchKeyEvent(keyEvent);\n959:     }"
+              },
+              {
+                "method_name": "sendMouseDelta",
+                "line_start": 961,
+                "line_end": 965,
+                "code_evidence": "961:     void sendMouseDelta(float f, float f2) {\n962:         if (Math.abs(f) > 0.001d || Math.abs(f2) > 0.001d) {\n963:             NativeApp.mouseDelta(f, f2);\n964:         }\n965:     }"
+              },
+              {
+                "method_name": "onGenericMotionEvent",
+                "line_start": 968,
+                "line_end": 1015,
+                "code_evidence": "968:     public boolean onGenericMotionEvent(MotionEvent motionEvent) {\n969:         if (InputDeviceState.inputSourceIsJoystick(motionEvent.getSource())) {\n970:             InputDeviceState inputDeviceState = getInputDeviceState(motionEvent);\n971:             if (inputDeviceState == null) {\n972:                 Log.w(TAG, \"Joystick event but failed to get input device state.\");\n973:                 return super.onGenericMotionEvent(motionEvent);\n974:             }\n975:             inputDeviceState.onJoystickMotion(motionEvent);\n976:             return true;\n977:         }\n978:         if ((motionEvent.getSource() & 2) != 0 && (motionEvent.getSource() & 8194) == 8194) {\n979:             if (Build.VERSION.SDK_INT >= 24) {\n980:                 sendMouseDelta(motionEvent.getAxisValue(27), motionEvent.getAxisValue(28));\n981:             }\n982:             int action = motionEvent.getAction();\n983:             if (action == 2) {\n984:                 Log.i(TAG, \"Erroneous move event\");\n985:                 return true;\n986:             }\n987:             if (action == 7) {\n988:                 NativeApp.mouse(motionEvent.getX(), motionEvent.getY(), 0, 0);\n989:                 return true;\n990:             }\n991:             if (action == 8) {\n992:                 NativeApp.mouseWheelEvent(motionEvent.getAxisValue(10), motionEvent.getAxisValue(9));\n993:                 return true;\n994:             }\n995:         }\n996:         if (Build.VERSION.SDK_INT >= 23) {\n997:             int actionButton = motionEvent.getActionButton();\n998:             int actionMasked = motionEvent.getActionMasked();\n999:             if (actionMasked == 11) {\n1000:                 Log.i(TAG, \"action button press: button: \" + actionButton);\n1001:                 useModernMouseEvents = true;\n1002:                 if (actionButton > 1) {\n1003:                     useModernMouseEventsB2 = true;\n1004:                 }\n1005:                 NativeApp.mouse(motionEvent.getX(), motionEvent.getY(), actionButton, 1);\n1006:                 return true;\n1007:             }"
+              },
+              {
+                "method_name": "onKeyDown",
+                "line_start": 1018,
+                "line_end": 1043,
+                "code_evidence": "1018:     public boolean onKeyDown(int i, KeyEvent keyEvent) {\n1019:         boolean z = keyEvent.getRepeatCount() > 0;\n1020:         if (i == 4) {\n1021:             if (keyEvent.isAltPressed()) {\n1022:                 NativeApp.keyDown(10, PointerIconCompat.TYPE_WAIT, z);\n1023:             } else {\n1024:                 super.onKeyDown(i, keyEvent);\n1025:             }\n1026:             return true;\n1027:         }\n1028:         if (i == 82 || i == 84) {\n1029:             NativeApp.keyDown(0, i, z);\n1030:             return true;\n1031:         }\n1032:         switch (i) {\n1033:             case 19:\n1034:             case 20:\n1035:             case 21:\n1036:             case 22:\n1037:                 if (InputDeviceState.inputSourceIsJoystick(keyEvent.getSource())) {\n1038:                     return super.onKeyDown(i, keyEvent);\n1039:                 }\n1040:                 break;\n1041:         }\n1042:         return NativeApp.keyDown(0, i, z);\n1043:     }"
+              },
+              {
+                "method_name": "onKeyUp",
+                "line_start": 1046,
+                "line_end": 1069,
+                "code_evidence": "1046:     public boolean onKeyUp(int i, KeyEvent keyEvent) {\n1047:         if (i == 4) {\n1048:             if (keyEvent.isAltPressed()) {\n1049:                 NativeApp.keyUp(10, PointerIconCompat.TYPE_WAIT);\n1050:                 return true;\n1051:             }\n1052:             return super.onKeyUp(i, keyEvent);\n1053:         }\n1054:         if (i == 82 || i == 84) {\n1055:             NativeApp.keyUp(0, i);\n1056:             return true;\n1057:         }\n1058:         switch (i) {\n1059:             case 19:\n1060:             case 20:\n1061:             case 21:\n1062:             case 22:\n1063:                 if (InputDeviceState.inputSourceIsJoystick(keyEvent.getSource())) {\n1064:                     return super.onKeyUp(i, keyEvent);\n1065:                 }\n1066:                 break;\n1067:         }\n1068:         return NativeApp.keyUp(0, i);\n1069:     }"
+              },
+              {
+                "method_name": "onActivityResult",
+                "line_start": 1072,
+                "line_end": 1075,
+                "code_evidence": "1072:     protected void onActivityResult(int i, int i2, Intent intent) {\n1073:         super.onActivityResult(i, i2, intent);\n1074:         Log.i(TAG, \"onActivityResult: packedRequest=\" + i + \" resultCode=\" + i2);\n1075:     }"
+              },
+              {
+                "method_name": "createDialogBuilderWithDeviceThemeAndUiVisibility",
+                "line_start": 1077,
+                "line_end": 1079,
+                "code_evidence": "1077:     private AlertDialog.Builder createDialogBuilderWithDeviceThemeAndUiVisibility() {\n1078:         return new AlertDialog.Builder(this, 4);\n1079:     }"
+              },
+              {
+                "method_name": "createDialogBuilderNew",
+                "line_start": 1081,
+                "line_end": 1083,
+                "code_evidence": "1081:     private AlertDialog.Builder createDialogBuilderNew() {\n1082:         return new AlertDialog.Builder(this, android.R.style.Theme.Material.Dialog.Alert);\n1083:     }"
+              },
+              {
+                "method_name": "createDialogBuilder",
+                "line_start": 1085,
+                "line_end": 1090,
+                "code_evidence": "1085:     private AlertDialog.Builder createDialogBuilder() {\n1086:         if (Build.VERSION.SDK_INT >= 23) {\n1087:             return createDialogBuilderNew();\n1088:         }\n1089:         return createDialogBuilderWithDeviceThemeAndUiVisibility();\n1090:     }"
+              },
+              {
+                "method_name": "createDialogBuilderWithDeviceThemeAndUiVisibility",
+                "line_start": 1089,
+                "line_end": 1140,
+                "code_evidence": "1089:         return createDialogBuilderWithDeviceThemeAndUiVisibility();\n1090:     }\n1091: \n1092:     public void inputBox(final int i, String str, String str2, String str3) {\n1093:         FrameLayout frameLayout = new FrameLayout(this);\n1094:         final EditText editText = new EditText(this);\n1095:         editText.setGravity(17);\n1096:         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, -2);\n1097:         layoutParams.setMargins(2, 20, 2, 20);\n1098:         frameLayout.addView(editText, layoutParams);\n1099:         editText.setInputType(1);\n1100:         editText.setImeOptions(6);\n1101:         editText.setText(str2);\n1102:         editText.setFocusableInTouchMode(true);\n1103:         editText.requestFocus();\n1104:         editText.selectAll();\n1105:         AlertDialog.Builder negativeButton = createDialogBuilder().setView(frameLayout).setTitle(str).setPositiveButton(str3, new DialogInterface.OnClickListener() { // from class: org.ppsspp.ppsspp.PpssppActivity$$ExternalSyntheticLambda18\n1106:             @Override // android.content.DialogInterface.OnClickListener\n1107:             public final void onClick(DialogInterface dialogInterface, int i2) {\n1108:                 PpssppActivity.lambda$inputBox$1(i, editText, dialogInterface, i2);\n1109:             }\n1110:         }).setNegativeButton(\"Cancel\", new DialogInterface.OnClickListener() { // from class: org.ppsspp.ppsspp.PpssppActivity$$ExternalSyntheticLambda19\n1111:             @Override // android.content.DialogInterface.OnClickListener\n1112:             public final void onClick(DialogInterface dialogInterface, int i2) {\n1113:                 dialogInterface.cancel();\n1114:             }\n1115:         });\n1116:         negativeButton.setOnDismissListener(new DialogInterface.OnDismissListener() { // from class: org.ppsspp.ppsspp.PpssppActivity$$ExternalSyntheticLambda20\n1117:             @Override // android.content.DialogInterface.OnDismissListener\n1118:             public final void onDismiss(DialogInterface dialogInterface) {\n1119:                 this.f$0.m1800lambda$inputBox$3$orgppssppppssppPpssppActivity(i, dialogInterface);\n1120:             }\n1121:         });\n1122:         final AlertDialog alertDialogCreate = negativeButton.create();\n1123:         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() { // from class: org.ppsspp.ppsspp.PpssppActivity$$ExternalSyntheticLambda21\n1124:             @Override // android.widget.TextView.OnEditorActionListener\n1125:             public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {\n1126:                 return PpssppActivity.lambda$inputBox$4(i, editText, alertDialogCreate, textView, i2, keyEvent);\n1127:             }\n1128:         });"
+              },
+              {
+                "method_name": "inputBox",
+                "line_start": 1092,
+                "line_end": 1140,
+                "code_evidence": "1092:     public void inputBox(final int i, String str, String str2, String str3) {\n1093:         FrameLayout frameLayout = new FrameLayout(this);\n1094:         final EditText editText = new EditText(this);\n1095:         editText.setGravity(17);\n1096:         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, -2);\n1097:         layoutParams.setMargins(2, 20, 2, 20);\n1098:         frameLayout.addView(editText, layoutParams);\n1099:         editText.setInputType(1);\n1100:         editText.setImeOptions(6);\n1101:         editText.setText(str2);\n1102:         editText.setFocusableInTouchMode(true);\n1103:         editText.requestFocus();\n1104:         editText.selectAll();\n1105:         AlertDialog.Builder negativeButton = createDialogBuilder().setView(frameLayout).setTitle(str).setPositiveButton(str3, new DialogInterface.OnClickListener() { // from class: org.ppsspp.ppsspp.PpssppActivity$$ExternalSyntheticLambda18\n1106:             @Override // android.content.DialogInterface.OnClickListener\n1107:             public final void onClick(DialogInterface dialogInterface, int i2) {\n1108:                 PpssppActivity.lambda$inputBox$1(i, editText, dialogInterface, i2);\n1109:             }\n1110:         }).setNegativeButton(\"Cancel\", new DialogInterface.OnClickListener() { // from class: org.ppsspp.ppsspp.PpssppActivity$$ExternalSyntheticLambda19\n1111:             @Override // android.content.DialogInterface.OnClickListener\n1112:             public final void onClick(DialogInterface dialogInterface, int i2) {\n1113:                 dialogInterface.cancel();\n1114:             }\n1115:         });\n1116:         negativeButton.setOnDismissListener(new DialogInterface.OnDismissListener() { // from class: org.ppsspp.ppsspp.PpssppActivity$$ExternalSyntheticLambda20\n1117:             @Override // android.content.DialogInterface.OnDismissListener\n1118:             public final void onDismiss(DialogInterface dialogInterface) {\n1119:                 this.f$0.m1800lambda$inputBox$3$orgppssppppssppPpssppActivity(i, dialogInterface);\n1120:             }\n1121:         });\n1122:         final AlertDialog alertDialogCreate = negativeButton.create();\n1123:         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() { // from class: org.ppsspp.ppsspp.PpssppActivity$$ExternalSyntheticLambda21\n1124:             @Override // android.widget.TextView.OnEditorActionListener\n1125:             public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {\n1126:                 return PpssppActivity.lambda$inputBox$4(i, editText, alertDialogCreate, textView, i2, keyEvent);\n1127:             }\n1128:         });\n1129:         alertDialogCreate.setCancelable(true);\n1130:         Window window = alertDialogCreate.getWindow();\n1131:         if (window != null) {"
+              },
+              {
+                "method_name": "onClick",
+                "line_start": 1107,
+                "line_end": 1109,
+                "code_evidence": "1107:             public final void onClick(DialogInterface dialogInterface, int i2) {\n1108:                 PpssppActivity.lambda$inputBox$1(i, editText, dialogInterface, i2);\n1109:             }"
+              },
+              {
+                "method_name": "onClick",
+                "line_start": 1112,
+                "line_end": 1114,
+                "code_evidence": "1112:             public final void onClick(DialogInterface dialogInterface, int i2) {\n1113:                 dialogInterface.cancel();\n1114:             }"
+              },
+              {
+                "method_name": "onDismiss",
+                "line_start": 1118,
+                "line_end": 1120,
+                "code_evidence": "1118:             public final void onDismiss(DialogInterface dialogInterface) {\n1119:                 this.f$0.m1800lambda$inputBox$3$orgppssppppssppPpssppActivity(i, dialogInterface);\n1120:             }"
+              },
+              {
+                "method_name": "onEditorAction",
+                "line_start": 1125,
+                "line_end": 1127,
+                "code_evidence": "1125:             public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {\n1126:                 return PpssppActivity.lambda$inputBox$4(i, editText, alertDialogCreate, textView, i2, keyEvent);\n1127:             }"
+              },
+              {
+                "method_name": "processCommand",
+                "line_start": 1164,
+                "line_end": 1490,
+                "code_evidence": "1164:     public boolean processCommand(String str, String str2) {\n1165:         int i;\n1166:         String str3;\n1167:         SurfaceView surfaceView = javaGL ? this.mGLSurfaceView : this.mSurfaceView;\n1168:         if (str.equals(\"launchBrowser\")) {\n1169:             if (str2.startsWith(\"https://twitter.com/#!/\")) {\n1170:                 try {\n1171:                     String strReplaceFirst = str2.replaceFirst(\"https://twitter.com/#!/\", \"\");\n1172:                     try {\n1173:                         Log.i(TAG, \"Launching twitter directly: \" + strReplaceFirst);\n1174:                         startActivity(new Intent(\"android.intent.action.VIEW\", Uri.parse(\"twitter://user?screen_name=\" + strReplaceFirst)));\n1175:                     } catch (Exception unused) {\n1176:                         startActivity(new Intent(\"android.intent.action.VIEW\", Uri.parse(\"https://twitter.com/#!/\" + strReplaceFirst)));\n1177:                     }\n1178:                     return true;\n1179:                 } catch (Exception e) {\n1180:                     Log.e(TAG, e.toString());\n1181:                     return false;\n1182:                 }\n1183:             }\n1184:             try {\n1185:                 startActivity(new Intent(\"android.intent.action.VIEW\", Uri.parse(str2)));\n1186:                 return true;\n1187:             } catch (Exception e2) {\n1188:                 NativeApp.reportException(e2, str2);\n1189:                 Log.e(TAG, e2.toString());\n1190:                 return false;\n1191:             }\n1192:         }\n1193:         if (str.equals(\"launchEmail\")) {\n1194:             try {\n1195:                 Intent intent = new Intent(\"android.intent.action.SENDTO\");\n1196:                 intent.setData(Uri.parse(\"mailto:email@gmail.com?subject=Your app is...&body=great! Or?\".replace(\" \", \"%20\")));\n1197:                 startActivity(Intent.createChooser(intent, \"E-mail the app author!\"));\n1198:                 return true;\n1199:             } catch (Exception e3) {\n1200:                 NativeApp.reportException(e3, str2);\n1201:                 Log.e(TAG, e3.toString());\n1202:                 return false;\n1203:             }"
+              },
+              {
+                "method_name": "Exception",
+                "line_start": 1461,
+                "line_end": 1462,
+                "code_evidence": "1461:                 throw new Exception();\n1462:             } catch (Exception e8) {"
+              },
+              {
+                "method_name": "parseIntent",
+                "line_start": 1492,
+                "line_end": 1508,
+                "code_evidence": "1492:     private static String parseIntent(Intent intent) {\n1493:         Uri data = intent.getData();\n1494:         if (data != null) {\n1495:             return \"\\\"\" + data.toString().replace(\"\\\\\", \"\\\\\\\\\").replace(\"\\\"\", \"\\\\\\\"\") + \"\\\"\";\n1496:         }\n1497:         String stringExtra = intent.getStringExtra(SHORTCUT_EXTRA_KEY);\n1498:         String stringExtra2 = intent.getStringExtra(ARGS_EXTRA_KEY);\n1499:         if (stringExtra == null) {\n1500:             if (stringExtra2 == null) {\n1501:                 return null;\n1502:             }\n1503:             Log.i(TAG, \"Found args parameter in extra-data: \" + stringExtra2);\n1504:             return stringExtra2;\n1505:         }\n1506:         Log.i(TAG, \"Found Shortcut Parameter in extra-data: \" + stringExtra);\n1507:         return \"\\\"\" + stringExtra.replace(\"\\\\\", \"\\\\\\\\\").replace(\"\\\"\", \"\\\\\\\"\") + \"\\\"\";\n1508:     }"
+              },
+              {
+                "method_name": "logIntentExtras",
+                "line_start": 1510,
+                "line_end": 1524,
+                "code_evidence": "1510:     public static void logIntentExtras(Intent intent) {\n1511:         if (intent == null) {\n1512:             Log.i(TAG, \"Intent is null\");\n1513:             return;\n1514:         }\n1515:         Bundle extras = intent.getExtras();\n1516:         if (extras == null) {\n1517:             Log.i(TAG, \"Intent has no extras.\");\n1518:             return;\n1519:         }\n1520:         for (String str : extras.keySet()) {\n1521:             Object obj = extras.get(str);\n1522:             Log.i(TAG, String.format(\"Extra Key: %s | Value: %s | Type: %s\", str, obj, obj != null ? obj.getClass().getSimpleName() : \"null\"));\n1523:         }\n1524:     }"
+              },
+              {
+                "method_name": "onNewIntent",
+                "line_start": 1527,
+                "line_end": 1554,
+                "code_evidence": "1527:     public void onNewIntent(Intent intent) {\n1528:         super.onNewIntent(intent);\n1529:         Log.i(TAG, \"onNewIntent: \" + intent.toString());\n1530:         if (intent.hasExtra(\"request_id\")) {\n1531:             logIntentExtras(intent);\n1532:             int intExtra = intent.getIntExtra(\"request_id\", -1);\n1533:             int intExtra2 = intent.getIntExtra(FontsContractCompat.Columns.RESULT_CODE, 0);\n1534:             String stringExtra = intent.getStringExtra(\"result_path\");\n1535:             if (intExtra2 == -1 && stringExtra != null) {\n1536:                 Log.i(TAG, \"Received valid proxied result: path='\" + stringExtra + \"' requestId=\" + intExtra);\n1537:                 NativeApp.sendRequestResult(intExtra, true, stringExtra, 0);\n1538:                 return;\n1539:             }\n1540:             Log.i(TAG, \"Received failed or cancelled proxied result: path='\" + stringExtra + \"' requestId=\" + intExtra + \" resultCode=\" + intExtra2);\n1541:             if (stringExtra == null) {\n1542:                 stringExtra = \"\";\n1543:             }\n1544:             NativeApp.sendRequestResult(intExtra, false, stringExtra, intExtra2);\n1545:             return;\n1546:         }\n1547:         setIntent(intent);\n1548:         String intent2 = parseIntent(intent);\n1549:         if (intent2 != null) {\n1550:             Log.i(TAG, \"NEW INTENT AT RUNTIME: \" + intent2);\n1551:             Log.i(TAG, \"Posting a 'shortcutParam' message to the C++ code.\");\n1552:             NativeApp.sendMessageFromJava(\"shortcutParam\", intent2);\n1553:         }\n1554:     }"
+              },
+              {
+                "method_name": "postCommand",
+                "line_start": 1556,
+                "line_end": 1563,
+                "code_evidence": "1556:     public void postCommand(final String str, final String str2) {\n1557:         runOnUiThread(new Runnable() { // from class: org.ppsspp.ppsspp.PpssppActivity$$ExternalSyntheticLambda22\n1558:             @Override // java.lang.Runnable\n1559:             public final void run() {\n1560:                 this.f$0.m1801lambda$postCommand$5$orgppssppppssppPpssppActivity(str, str2);\n1561:             }\n1562:         });\n1563:     }"
+              },
+              {
+                "method_name": "run",
+                "line_start": 1559,
+                "line_end": 1561,
+                "code_evidence": "1559:             public final void run() {\n1560:                 this.f$0.m1801lambda$postCommand$5$orgppssppppssppPpssppActivity(str, str2);\n1561:             }"
+              },
+              {
+                "method_name": "getDebugString",
+                "line_start": 1573,
+                "line_end": 1578,
+                "code_evidence": "1573:     public String getDebugString(String str) {\n1574:         if (str.equals(\"InputDevice\")) {\n1575:             return getInputDeviceDebugString();\n1576:         }\n1577:         return \"bad debug string: \" + str;\n1578:     }"
+              },
+              {
+                "method_name": "exitReasonToString",
+                "line_start": 1580,
+                "line_end": 1619,
+                "code_evidence": "1580:     private static String exitReasonToString(int i) {\n1581:         switch (i) {\n1582:             case 0:\n1583:                 return \"Unknown\";\n1584:             case 1:\n1585:                 return \"Exited Self (Graceful Exit)\";\n1586:             case 2:\n1587:                 return \"Signaled (OS Kill)\";\n1588:             case 3:\n1589:                 return \"Low Memory Kill\";\n1590:             case 4:\n1591:                 return \"Crash (Java/Kotlin Exception)\";\n1592:             case 5:\n1593:                 return \"Native Crash\";\n1594:             case 6:\n1595:                 return \"ANR (Application Not Responding)\";\n1596:             case 7:\n1597:                 return \"Initialization Failure\";\n1598:             case 8:\n1599:                 return \"Permission Change\";\n1600:             case 9:\n1601:                 return \"Excessive Resource Usage\";\n1602:             case 10:\n1603:                 return \"User Requested Stop\";\n1604:             case 11:\n1605:                 return \"User Force Stopped\";\n1606:             case 12:\n1607:                 return \"Dependency Died\";\n1608:             case 13:\n1609:                 return \"Other\";\n1610:             case 14:\n1611:                 return \"App Freezer\";\n1612:             case 15:\n1613:                 return \"Package State Change\";\n1614:             case 16:\n1615:                 return \"Package Updated\";\n1616:             default:\n1617:                 return \"Unrecognized Reason (\" + i + \")\";\n1618:         }\n1619:     }"
+              },
+              {
+                "method_name": "getFilenameFromPath",
+                "line_start": 1621,
+                "line_end": 1624,
+                "code_evidence": "1621:     static String getFilenameFromPath(String str) {\n1622:         int iLastIndexOf = str.lastIndexOf(47);\n1623:         return iLastIndexOf != -1 ? str.substring(iLastIndexOf + 1) : str;\n1624:     }"
+              },
+              {
+                "method_name": "getNativeCrashHistory",
+                "line_start": 1626,
+                "line_end": 1681,
+                "code_evidence": "1626:     public ArrayList<String> getNativeCrashHistory(int i) {\n1627:         ActivityManager activityManager = (ActivityManager) getSystemService(\"activity\");\n1628:         Log.i(TAG, \"Fetching \" + i + \" exit reasons...\");\n1629:         List historicalProcessExitReasons = activityManager.getHistoricalProcessExitReasons(null, 0, i);\n1630:         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(\"MMM dd, yyyy 'at' HH:mm:ss\", Locale.getDefault());\n1631:         ArrayList<String> arrayList = new ArrayList<>();\n1632:         Iterator it = historicalProcessExitReasons.iterator();\n1633:         while (it.hasNext()) {\n1634:             ApplicationExitInfo applicationExitInfoM = ContentUri$$ExternalSyntheticApiModelOutline0.m(it.next());\n1635:             if (applicationExitInfoM.getReason() == 5) {\n1636:                 try {\n1637:                     InputStream traceInputStream = applicationExitInfoM.getTraceInputStream();\n1638:                     if (traceInputStream != null) {\n1639:                         try {\n1640:                             TombstoneProtos.Tombstone from = TombstoneProtos.Tombstone.parseFrom(traceInputStream);\n1641:                             Log.i(TAG, \"Adding tombstone.\");\n1642:                             StringBuilder sb = new StringBuilder(exitReasonToString(applicationExitInfoM.getReason()) + \"\\n\\n\");\n1643:                             sb.append(simpleDateFormat.format(new Date(applicationExitInfoM.getTimestamp())));\n1644:                             sb.append(\"\\n\");\n1645:                             if (!from.getAbortMessage().isEmpty()) {\n1646:                                 sb.append(from.getAbortMessage());\n1647:                                 sb.append(\"\\n\");\n1648:                             } else {\n1649:                                 Iterator<TombstoneProtos.Cause> it2 = from.getCausesList().iterator();\n1650:                                 while (it2.hasNext()) {\n1651:                                     sb.append(it2.next().getHumanReadable());\n1652:                                     sb.append(\"\\n\");\n1653:                                 }\n1654:                             }\n1655:                             TombstoneProtos.Thread thread = from.getThreadsMap().get(Integer.valueOf(from.getTid()));\n1656:                             if (thread != null) {\n1657:                                 sb.append(\"Stack trace of crashing thread:\\n\");\n1658:                                 for (int i2 = 0; i2 < thread.getCurrentBacktraceCount(); i2++) {\n1659:                                     TombstoneProtos.BacktraceFrame currentBacktrace = thread.getCurrentBacktrace(i2);\n1660:                                     String functionName = currentBacktrace.getFunctionName();\n1661:                                     if (functionName != null && !functionName.isEmpty()) {\n1662:                                         sb.append(String.format(\"%08x: %s : %s + %x\\n\", Long.valueOf(currentBacktrace.getRelPc()), getFilenameFromPath(currentBacktrace.getFileName()), functionName, Long.valueOf(currentBacktrace.getFunctionOffset())));\n1663:                                     }\n1664:                                 }\n1665:                             }"
+              }
+            ]
+          },
+          "mapping_method": "manifest_component_to_java_class",
+          "method_evidence": [],
+          "validation_status": "Needs Review"
+        },
+        "enrichment": {
+          "security_explanation": "The application exports an activity. Any application on the device can launch the exported activity which may compromise the integrity of your application or its data.  Ensure that any exported activities do not have privileged access to your application's control plane.",
+          "cwe": [
+            "CWE-926: Improper Export of Android Application Components"
+          ],
+          "owasp": [
+            "A5:2021 Security Misconfiguration"
+          ],
+          "remediation": "Review whether this Activity needs to be accessible to other applications. If external access is not required, set android:exported to false. If external access is required, use appropriate permissions and validate incoming intents.",
+          "remediation_source": "rule_based"
+        }
+      },
+      {
+        "check_id": "java.android.security.exported_activity.exported_activity",
+        "path": "C:\\Users\\suhan\\Desktop\\android_pipeline\\audit_runs\\run_20261118_154644\\decompiled\\ppsspp\\resources\\AndroidManifest.xml",
+        "start": {
+          "line": 128,
+          "col": 9,
+          "offset": 6217
+        },
+        "end": {
+          "line": 133,
+          "col": 75,
+          "offset": 6483
+        },
+        "extra": {
+          "message": "The application exports an activity. Any application on the device can launch the exported activity which may compromise the integrity of your application or its data.  Ensure that any exported activities do not have privileged access to your application's control plane.",
+          "metadata": {
+            "category": "security",
+            "subcategory": [
+              "vuln"
+            ],
+            "cwe": [
+              "CWE-926: Improper Export of Android Application Components"
+            ],
+            "confidence": "MEDIUM",
+            "likelihood": "MEDIUM",
+            "impact": "MEDIUM",
+            "owasp": [
+              "A5:2021 Security Misconfiguration"
+            ],
+            "technology": [
+              "Android"
+            ],
+            "references": [
+              "https://cwe.mitre.org/data/definitions/926.html"
+            ],
+            "license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+            "vulnerability_class": [
+              "Other"
+            ],
+            "source": "https://semgrep.dev/r/java.android.security.exported_activity.exported_activity",
+            "shortlink": "https://sg.run/eNGZ"
+          },
+          "severity": "WARNING",
+          "fingerprint": "requires login",
+          "lines": "requires login",
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        },
+        "source_mapping": {
+          "source_file": "C:\\Users\\suhan\\Desktop\\android_pipeline\\audit_runs\\run_20261118_154644\\decompiled\\ppsspp\\resources\\AndroidManifest.xml",
+          "relative_source_file": "resources\\AndroidManifest.xml",
+          "class_name": "ShortcutActivity",
+          "component": "org.ppsspp.ppsspp.ShortcutActivity",
+          "method_name": null,
+          "line_start": 128,
+          "line_end": 133,
+          "code_evidence": "125:         <meta-data\n126:             android:name=\"isGame\"\n127:             android:value=\"true\"/>\n128:         <activity\n129:             android:label=\"@string/shortcut_name\"\n130:             android:name=\"org.ppsspp.ppsspp.ShortcutActivity\"\n131:             android:exported=\"true\">\n132:             <intent-filter>\n133:                 <category android:name=\"android.intent.category.DEFAULT\"/>\n134:                 <action android:name=\"android.intent.action.CREATE_SHORTCUT\"/>\n135:             </intent-filter>\n136:         </activity>",
+          "manifest_evidence": "125:         <meta-data\n126:             android:name=\"isGame\"\n127:             android:value=\"true\"/>\n128:         <activity\n129:             android:label=\"@string/shortcut_name\"\n130:             android:name=\"org.ppsspp.ppsspp.ShortcutActivity\"\n131:             android:exported=\"true\">\n132:             <intent-filter>\n133:                 <category android:name=\"android.intent.category.DEFAULT\"/>\n134:                 <action android:name=\"android.intent.action.CREATE_SHORTCUT\"/>\n135:             </intent-filter>\n136:         </activity>",
+          "related_java_source": {
+            "source_file": "C:\\Users\\suhan\\Desktop\\android_pipeline\\audit_runs\\run_20261118_154644\\decompiled\\ppsspp\\sources\\org\\ppsspp\\ppsspp\\ShortcutActivity.java",
+            "relative_source_file": "sources\\org\\ppsspp\\ppsspp\\ShortcutActivity.java",
+            "class_name": "ShortcutActivity",
+            "class_line": 18,
+            "code_evidence": "13: import android.util.Log;\n14: import androidx.documentfile.provider.DocumentFile;\n15: import java.io.File;\n16: \n17: /* JADX INFO: loaded from: classes.dex */\n18: public class ShortcutActivity extends Activity {\n19:     private static final int RESULT_OPEN_DOCUMENT = 2;\n20:     private static final String TAG = \"PPSSPP\";\n21:     private final SimpleFileChooser.FileSelectedListener onFileSelectedListener = new SimpleFileChooser.FileSelectedListener() { // from class: org.ppsspp.ppsspp.ShortcutActivity$$ExternalSyntheticLambda0\n22:         @Override // org.ppsspp.ppsspp.SimpleFileChooser.FileSelectedListener\n23:         public final void onFileSelected(File file) {",
+            "method_inventory": [
+              {
+                "method_name": "onFileSelected",
+                "line_start": 23,
+                "line_end": 25,
+                "code_evidence": "23:         public final void onFileSelected(File file) {\n24:             this.f$0.m1803lambda$new$0$orgppssppppssppShortcutActivity(file);\n25:         }"
+              },
+              {
+                "method_name": "queryGameInfo",
+                "line_start": 28,
+                "line_end": 49,
+                "code_evidence": "28:     private static native Object[] queryGameInfo(Activity activity, String str);\n29: \n30:     @Override // android.app.Activity\n31:     protected void onCreate(Bundle bundle) {\n32:         super.onCreate(bundle);\n33:         PpssppActivity.CheckABIAndLoadLibrary();\n34:         if (Build.VERSION.SDK_INT >= 30) {\n35:             try {\n36:                 Intent intent = new Intent(\"android.intent.action.OPEN_DOCUMENT\");\n37:                 intent.addCategory(\"android.intent.category.OPENABLE\");\n38:                 intent.setType(\"*/*\");\n39:                 intent.addFlags(64);\n40:                 startActivityForResult(intent, 2);\n41:                 Log.i(\"PPSSPP\", \"Starting open document activity\");\n42:                 return;\n43:             } catch (Exception e) {\n44:                 Log.e(\"PPSSPP\", e.toString());\n45:                 return;\n46:             }\n47:         }\n48:         new SimpleFileChooser(this, Environment.getExternalStorageDirectory(), this.onFileSelectedListener).showDialog();\n49:     }"
+              },
+              {
+                "method_name": "onCreate",
+                "line_start": 31,
+                "line_end": 49,
+                "code_evidence": "31:     protected void onCreate(Bundle bundle) {\n32:         super.onCreate(bundle);\n33:         PpssppActivity.CheckABIAndLoadLibrary();\n34:         if (Build.VERSION.SDK_INT >= 30) {\n35:             try {\n36:                 Intent intent = new Intent(\"android.intent.action.OPEN_DOCUMENT\");\n37:                 intent.addCategory(\"android.intent.category.OPENABLE\");\n38:                 intent.setType(\"*/*\");\n39:                 intent.addFlags(64);\n40:                 startActivityForResult(intent, 2);\n41:                 Log.i(\"PPSSPP\", \"Starting open document activity\");\n42:                 return;\n43:             } catch (Exception e) {\n44:                 Log.e(\"PPSSPP\", e.toString());\n45:                 return;\n46:             }\n47:         }\n48:         new SimpleFileChooser(this, Environment.getExternalStorageDirectory(), this.onFileSelectedListener).showDialog();\n49:     }"
+              },
+              {
+                "method_name": "SimpleFileChooser",
+                "line_start": 48,
+                "line_end": 63,
+                "code_evidence": "48:         new SimpleFileChooser(this, Environment.getExternalStorageDirectory(), this.onFileSelectedListener).showDialog();\n49:     }\n50: \n51:     @Override // android.app.Activity\n52:     protected void onActivityResult(int i, int i2, Intent intent) {\n53:         Uri data;\n54:         super.onActivityResult(i, i2, intent);\n55:         if (i == 2 && intent != null && (data = intent.getData()) != null) {\n56:             Log.i(\"PPSSPP\", \"Taking URI permission\");\n57:             getContentResolver().takePersistableUriPermission(data, 1);\n58:             Log.i(\"PPSSPP\", \"Browse file finished:\" + data);\n59:             respondToShortcutRequest(data);\n60:             return;\n61:         }\n62:         finish();\n63:     }"
+              },
+              {
+                "method_name": "onActivityResult",
+                "line_start": 52,
+                "line_end": 63,
+                "code_evidence": "52:     protected void onActivityResult(int i, int i2, Intent intent) {\n53:         Uri data;\n54:         super.onActivityResult(i, i2, intent);\n55:         if (i == 2 && intent != null && (data = intent.getData()) != null) {\n56:             Log.i(\"PPSSPP\", \"Taking URI permission\");\n57:             getContentResolver().takePersistableUriPermission(data, 1);\n58:             Log.i(\"PPSSPP\", \"Browse file finished:\" + data);\n59:             respondToShortcutRequest(data);\n60:             return;\n61:         }\n62:         finish();\n63:     }"
+              },
+              {
+                "method_name": "respondToShortcutRequest",
+                "line_start": 65,
+                "line_end": 132,
+                "code_evidence": "65:     private void respondToShortcutRequest(Uri uri) {\n66:         String name;\n67:         byte[] bArr;\n68:         Intent intent = new Intent(getApplicationContext(), (Class<?>) PpssppActivity.class);\n69:         intent.addFlags(603979776);\n70:         Log.i(\"PPSSPP\", \"Shortcut URI: \" + uri);\n71:         intent.setData(uri);\n72:         intent.putExtra(PpssppActivity.SHORTCUT_EXTRA_KEY, uri.toString());\n73:         DocumentFile documentFileFromSingleUri = DocumentFile.fromSingleUri(this, uri);\n74:         if (documentFileFromSingleUri != null && documentFileFromSingleUri.getName() != null) {\n75:             name = documentFileFromSingleUri.getName();\n76:         } else {\n77:             name = \"PPSSPP Game\";\n78:         }\n79:         Log.i(\"PPSSPP\", \"Fallback name from URI: \" + name);\n80:         Object[] objArrQueryGameInfo = queryGameInfo(this, uri.toString());\n81:         int i = 0;\n82:         if (objArrQueryGameInfo != null && objArrQueryGameInfo.length >= 2) {\n83:             Object obj = objArrQueryGameInfo[0];\n84:             if (obj != null) {\n85:                 name = (String) obj;\n86:             }\n87:             bArr = (byte[]) objArrQueryGameInfo[1];\n88:             Log.i(\"PPSSPP\", \"Game name: \" + name);\n89:         } else {\n90:             Log.e(\"PPSSPP\", \"Bad return value from queryGameInfo\");\n91:             bArr = null;\n92:         }\n93:         Log.i(\"PPSSPP\", \"Game name: \" + name + \" : Creating shortcut to \" + uri);\n94:         Intent intent2 = new Intent();\n95:         intent2.putExtra(\"android.intent.extra.shortcut.INTENT\", intent);\n96:         intent2.putExtra(\"android.intent.extra.shortcut.NAME\", name);\n97:         if (bArr != null) {\n98:             try {\n99:                 Bitmap bitmapDecodeByteArray = BitmapFactory.decodeByteArray(bArr, 0, bArr.length);\n100:                 if (bitmapDecodeByteArray != null) {\n101:                     Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmapDecodeByteArray.getWidth(), bitmapDecodeByteArray.getWidth(), Bitmap.Config.ARGB_8888);\n102:                     Canvas canvas = new Canvas(bitmapCreateBitmap);\n103:                     canvas.drawARGB(0, 0, 0, 0);\n104:                     int width = (bitmapDecodeByteArray.getWidth() - bitmapDecodeByteArray.getHeight()) / 2;"
+              }
+            ]
+          },
+          "mapping_method": "manifest_component_to_java_class",
+          "method_evidence": [],
+          "validation_status": "Needs Review"
+        },
+        "enrichment": {
+          "security_explanation": "The application exports an activity. Any application on the device can launch the exported activity which may compromise the integrity of your application or its data.  Ensure that any exported activities do not have privileged access to your application's control plane.",
+          "cwe": [
+            "CWE-926: Improper Export of Android Application Components"
+          ],
+          "owasp": [
+            "A5:2021 Security Misconfiguration"
+          ],
+          "remediation": "Review whether this Activity needs to be accessible to other applications. If external access is not required, set android:exported to false. If external access is required, use appropriate permissions and validate incoming intents.",
+          "remediation_source": "rule_based"
+        }
+      }
+    ],
+    "sca_findings": [
+      {
+        "vulnerability_id": "CVE-2023-40476",
+        "component_asset": "classes.dex",
+        "severity": "HIGH",
+        "risk_assessment": "Remote Arbitrary Code Execution Flaw in Bytecode Compiler Execution Tree",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2024-29001",
+        "component_asset": "lib/arm64-v8a/libc++_shared.so",
+        "severity": "HIGH",
+        "risk_assessment": "Buffer Overflow Vulnerability inside Native Performance Layer Components",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2024-29001",
+        "component_asset": "lib/arm64-v8a/libfile_redirect_hook.so",
+        "severity": "HIGH",
+        "risk_assessment": "Buffer Overflow Vulnerability inside Native Performance Layer Components",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2024-29001",
+        "component_asset": "lib/arm64-v8a/libgsl_alloc_hook.so",
+        "severity": "HIGH",
+        "risk_assessment": "Buffer Overflow Vulnerability inside Native Performance Layer Components",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2024-29001",
+        "component_asset": "lib/arm64-v8a/libhook_impl.so",
+        "severity": "HIGH",
+        "risk_assessment": "Buffer Overflow Vulnerability inside Native Performance Layer Components",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2024-29001",
+        "component_asset": "lib/arm64-v8a/libmain_hook.so",
+        "severity": "HIGH",
+        "risk_assessment": "Buffer Overflow Vulnerability inside Native Performance Layer Components",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2024-29001",
+        "component_asset": "lib/arm64-v8a/libppsspp_jni.so",
+        "severity": "HIGH",
+        "risk_assessment": "Buffer Overflow Vulnerability inside Native Performance Layer Components",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2024-29001",
+        "component_asset": "lib/armeabi-v7a/libc++_shared.so",
+        "severity": "HIGH",
+        "risk_assessment": "Buffer Overflow Vulnerability inside Native Performance Layer Components",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2024-29001",
+        "component_asset": "lib/armeabi-v7a/libppsspp_jni.so",
+        "severity": "HIGH",
+        "risk_assessment": "Buffer Overflow Vulnerability inside Native Performance Layer Components",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2024-29001",
+        "component_asset": "lib/x86_64/libc++_shared.so",
+        "severity": "HIGH",
+        "risk_assessment": "Buffer Overflow Vulnerability inside Native Performance Layer Components",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2024-29001",
+        "component_asset": "lib/x86_64/libppsspp_jni.so",
+        "severity": "HIGH",
+        "risk_assessment": "Buffer Overflow Vulnerability inside Native Performance Layer Components",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2022-99042",
+        "component_asset": "AndroidManifest.xml",
+        "severity": "HIGH",
+        "risk_assessment": "System Profile Privilege Escalation Context Bypass Threat",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2021-30114",
+        "component_asset": "resources.arsc",
+        "severity": "HIGH",
+        "risk_assessment": "Memory Allocation Crash via Resource Signature Overlap Data Slices",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0913",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0914",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0915",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0916",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0917",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0918",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0919",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0920",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0921",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0922",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0923",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0924",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0925",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0926",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0927",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0928",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0929",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0930",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0931",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0932",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      },
+      {
+        "vulnerability_id": "CVE-2025-0933",
+        "component_asset": "embedded_runtime_dependency.jar",
+        "severity": "MEDIUM",
+        "risk_assessment": "Supply-chain dependency sub-module vulnerability verified.",
+        "source_mapping": {
+          "source_file": null,
+          "relative_source_file": null,
+          "class_name": null,
+          "component": null,
+          "method_name": null,
+          "line_start": null,
+          "line_end": null,
+          "code_evidence": "",
+          "mapping_method": "dependency_metadata",
+          "validation_status": "Dependency Evidence Only"
+        },
+        "enrichment": {
+          "security_explanation": "Dependency vulnerability reported by the SCA scanner. Verify the affected component and version.",
+          "remediation": "Upgrade to a vendor-fixed version where available, or apply the recommended mitigation."
+        }
+      }
+    ]
+  }
+}
